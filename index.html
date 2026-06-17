@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahria University GPA Hub | Professional 3D</title>
+    <!-- Montserrat and Inter fonts for premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #06080e;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-glow: rgba(212, 175, 55, 0.35);
+            --accent-gold: #d4af37;
+            --accent-gold-deep: #b8860b;
+            --accent-navy: #2c5282;
+            --error-red: #ef4444;
+            --success-green: #10b981;
+            /* Mouse-light position — updated by JS on mousemove */
+            --lx: 0.5;
+            --ly: 0.3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Moving Fluid Liquid Background (Behind the clean glass) */
+        .liquid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background: radial-gradient(circle at 10% 20%, #0a0e1a 0%, #040509 95%);
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.35;
+            will-change: transform;
+        }
+
+        .blob-1 {
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, #1e3a5f, #2c5282);
+            top: -10%;
+            left: -5%;
+        }
+
+        .blob-2 {
+            width: 550px;
+            height: 550px;
+            background: linear-gradient(135deg, #b8860b, #d4af37);
+            bottom: -15%;
+            right: -10%;
+        }
+
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #0f4c5c, #2c5282);
+            top: 40%;
+            left: 50%;
+        }
+
+        /* Page Layout Container */
+        .app-container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            z-index: 1;
+        }
+
+        /* Sharp Liquid Glass Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px 20px;
+            border-radius: 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            border-top: 1px solid var(--glass-highlight);
+        }
+
+        /* Circular Logo Container with Auto-Clipping */
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px auto;
+            border: 2px solid rgba(255, 255, 255, 0.20);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            box-shadow:
+                0 0 0 4px var(--accent-glow),
+                0 4px 20px rgba(0,0,0,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 30%, #e8d28a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+            /* Refined extrusion — subtle gold depth instead of a heavy 8-layer stack */
+            filter: drop-shadow(1px 1px 0 rgba(180,140,40,0.45))
+                    drop-shadow(2px 2px 0 rgba(150,115,30,0.30))
+                    drop-shadow(4px 5px 10px rgba(0,0,0,0.55))
+                    drop-shadow(0px 0px 22px rgba(212,175,55,0.18));
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* 3D Dashboard Columns */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        /* Glassmorphic Panel Base style */
+        .glass-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-highlight);
+            border-left: 1px solid var(--glass-highlight);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            position: relative;
+            /* Multi-layer shadow: close contact shadow + wide ambient + specular edge */
+            box-shadow:
+                0 1px 0  rgba(255,255,255,0.12),   /* top edge specular */
+                0 2px  4px  rgba(0,0,0,0.30),
+                0 6px  14px rgba(0,0,0,0.32),
+                0 18px 40px rgba(0,0,0,0.38),
+                0 50px 90px rgba(0,0,0,0.25),
+                /* thick slab shadow — makes card look physically thick */
+                0 8px  0   rgba(0,0,0,0.50),
+                inset 0 1px 0 rgba(255,255,255,0.12),
+                inset 0 -1px 0 rgba(0,0,0,0.22);
+            transform-style: preserve-3d;
+            will-change: transform;
+            transform: perspective(1200px) rotateX(1.5deg);
+            transition: box-shadow 0.3s ease, transform 0.15s ease;
+            /* subtle float */
+            animation: panelFloat 6s ease-in-out infinite;
+        }
+        @keyframes panelFloat {
+            0%, 100% { margin-top: 0px; }
+            50%       { margin-top: 6px; }
+        }
+        /* Physical slab face behind each card */
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            background: linear-gradient(160deg,
+                rgba(212,175,55,0.06) 0%,
+                rgba(0,0,0,0.55) 100%);
+            transform: translate(6px, 10px) scale(0.98);
+            z-index: -1;
+            filter: blur(6px);
+            pointer-events: none;
+        }
+        .glass-panel:hover {
+            box-shadow:
+                0 1px 0  rgba(255,255,255,0.16),
+                0 4px  8px  rgba(0,0,0,0.32),
+                0 12px 30px rgba(0,0,0,0.38),
+                0 35px 70px rgba(0,0,0,0.40),
+                0 70px 110px rgba(0,0,0,0.22),
+                0 10px  0   rgba(0,0,0,0.55),
+                inset 0 1px 0 rgba(255,255,255,0.16),
+                0 0 60px rgba(212,175,55,0.07);
+        }
+
+        .left-side {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Section Headings */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Toggle Switches for Grading Schemes */
+        .scheme-selector {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .scheme-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .scheme-btn.active {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.85), rgba(184, 134, 11, 0.85));
+            color: #1a1410;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+        }
+
+        /* Subject input rows container */
+        .courses-container {
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 5px;
+            min-height: 120px;
+        }
+
+        .courses-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .courses-container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+        .courses-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+
+        /* Empty State Placeholder styling */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            border: 1.5px dashed rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.01);
+            transition: opacity 0.3s ease;
+        }
+
+        .empty-state i {
+            font-size: 2.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            max-width: 280px;
+            line-height: 1.4;
+        }
+
+        /* Course Entry Row */
+        .course-row {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr 1.5fr auto;
+            gap: 15px;
+            align-items: center;
+            background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.15));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255,255,255,0.09);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            animation: fadeInRow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow:
+                0 2px  6px  rgba(0,0,0,0.20),
+                0 6px  18px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.05),
+                inset 0 -1px 0 rgba(0,0,0,0.18);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+        }
+        .course-row:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 8px 18px  rgba(0,0,0,0.28),
+                0 14px 32px rgba(0,0,0,0.20),
+                inset 0 1px 0 rgba(255,255,255,0.07);
+        }
+
+        @keyframes fadeInRow {
+            from { opacity: 0; transform: translateY(10px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0)   scale(1); }
+        }
+
+        /* inputs and Custom Popup trigger values styling */
+        input[type="text"], input[type="number"] {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 11px 14px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: rgba(212, 175, 55, 0.55);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.18);
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        /* Custom Interactive Popup Trigger Element */
+        .popup-selector-trigger {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 11px 14px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .popup-selector-trigger:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+        }
+
+        .popup-selector-trigger.unfilled {
+            border-color: rgba(239, 68, 68, 0.25);
+            background: rgba(239, 68, 68, 0.02);
+            color: rgba(239, 68, 68, 0.8);
+        }
+
+        .popup-selector-trigger.filled {
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.04);
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        .delete-btn {
+            background: linear-gradient(180deg, rgba(239,68,68,0.18) 0%, rgba(185,28,28,0.10) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-top: 1px solid rgba(239,68,68,0.35);
+            color: #ef4444;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 3px 0 rgba(139,20,20,0.50),
+                0 4px 10px rgba(239,68,68,0.15);
+            transform: translateY(0);
+            transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.2s ease;
+        }
+        .delete-btn:hover {
+            background: linear-gradient(180deg, rgba(239,68,68,0.55) 0%, rgba(185,28,28,0.35) 100%);
+            color: #ffffff;
+            box-shadow:
+                0 4px 0 rgba(139,20,20,0.60),
+                0 6px 16px rgba(239,68,68,0.30);
+            transform: translateY(-1px);
+        }
+        .delete-btn:active {
+            transform: translateY(2px);
+            box-shadow:
+                0 1px 0 rgba(139,20,20,0.50),
+                0 2px 5px rgba(239,68,68,0.15);
+        }
+
+        /* Button controls styling */
+        .controls-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .glass-btn {
+            background: linear-gradient(180deg,
+                rgba(255,255,255,0.10) 0%,
+                rgba(255,255,255,0.04) 100%);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-highlight);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* 3D raised button: bottom face + lift shadow */
+            box-shadow:
+                0 4px 0 rgba(0,0,0,0.45),
+                0 6px 12px rgba(0,0,0,0.30),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+            transform: translateY(0) translateZ(0);
+            transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.2s ease;
+        }
+        .glass-btn:hover {
+            background: linear-gradient(180deg,
+                rgba(255,255,255,0.14) 0%,
+                rgba(255,255,255,0.07) 100%);
+            border-color: rgba(255,255,255,0.3);
+            box-shadow:
+                0 5px 0 rgba(0,0,0,0.45),
+                0 8px 18px rgba(0,0,0,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.20);
+            transform: translateY(-1px);
+        }
+        .glass-btn:active {
+            /* physical press: lifts down into surface */
+            transform: translateY(3px);
+            box-shadow:
+                0 1px 0 rgba(0,0,0,0.50),
+                0 2px 4px rgba(0,0,0,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+
+        .glass-btn.primary {
+            background: linear-gradient(180deg,
+                rgba(212,175,55,0.40) 0%,
+                rgba(184,134,11,0.20) 100%);
+            border-color: rgba(212,175,55,0.35);
+            box-shadow:
+                0 4px 0 rgba(120,90,20,0.60),
+                0 6px 16px rgba(184,134,11,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.18);
+        }
+        .glass-btn.primary:hover {
+            background: linear-gradient(180deg,
+                rgba(212,175,55,0.55) 0%,
+                rgba(184,134,11,0.30) 100%);
+            border-color: rgba(212,175,55,0.55);
+            box-shadow:
+                0 5px 0 rgba(120,90,20,0.65),
+                0 8px 22px rgba(184,134,11,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.22);
+            transform: translateY(-1px);
+        }
+        .glass-btn.primary:active {
+            transform: translateY(3px);
+            box-shadow:
+                0 1px 0 rgba(120,90,20,0.60),
+                0 2px 6px rgba(184,134,11,0.20),
+                inset 0 1px 0 rgba(255,255,255,0.10);
+        }
+
+        /* Overall CGPA fields styling */
+        .overall-cgpa-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+            margin-top: 5px;
+        }
+
+        .overall-cgpa-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .cgpa-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* 3D Lamp Container column */
+        .right-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* The 3D Interactive Hanging Lamp */
+        .lamp-assembly {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            will-change: transform;
+            transform-origin: top center;
+        }
+
+        .ceiling-mount {
+            width: 45px;
+            height: 12px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 6px 6px 0 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .hanging-string {
+            width: 3px;
+            height: 70px;
+            background: linear-gradient(to bottom, #475569, #334155);
+        }
+
+        .lamp-housing {
+            position: relative;
+            width: 130px;
+            height: 45px;
+            background: linear-gradient(135deg, #a1a1aa, #52525b);
+            border-radius: 60px 60px 10px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 2px 2px rgba(255,255,255,0.2);
+            z-index: 2;
+        }
+
+        .lamp-housing::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 5%;
+            width: 90%;
+            height: 4px;
+            background: #18181b;
+            border-radius: 2px;
+        }
+
+        .bulb {
+            width: 40px;
+            height: 40px;
+            background: #e4e4e7;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Interactive Pull Cord */
+        .pull-cord {
+            position: absolute;
+            top: 110px;
+            left: calc(50% + 40px); /* Hangs off-center from shade */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: grab;
+            pointer-events: auto;
+            z-index: 5;
+            transform-origin: top center;
+        }
+
+        .pull-cord:active {
+            cursor: grabbing;
+        }
+
+        .beaded-chain {
+            width: 4px;
+            height: 90px;
+            background: repeating-linear-gradient(0deg, #94a3b8, #94a3b8 4px, #475569 4px, #475569 8px);
+            border-radius: 2px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            transition: height 0.15s ease;
+        }
+
+        .pull-pendant {
+            width: 18px;
+            height: 28px;
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            border: 2px solid #fff;
+            border-radius: 50% 50% 30% 30%;
+            margin-top: -3px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, background 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pull-pendant::after {
+            content: '▼';
+            font-size: 8px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .pull-cord:hover .pull-pendant {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #fef08a, #f59e0b);
+        }
+
+        /* Illuminated Light Cone projection */
+        .light-cone {
+            position: absolute;
+            top: 135px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 0;
+            background: linear-gradient(to bottom, rgba(253, 224, 71, 0.18) 0%, rgba(253, 224, 71, 0) 100%);
+            clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+        }
+
+        /* Active Lamp States */
+        body.lamp-active .bulb {
+            background: #fef08a;
+            box-shadow: 0 0 25px #fef08a, 0 0 50px #eab308;
+        }
+
+        body.lamp-active .light-cone {
+            height: 420px;
+            opacity: 1;
+        }
+
+        /* Output Results Display screen */
+        .results-panel {
+            width: 100%;
+            margin-top: -20px;
+            min-height: 330px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Unlit Cover mask overlay when results are inactive */
+        .unlit-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 15, 25, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: opacity 0.4s ease;
+        }
+
+        .unlit-overlay i {
+            font-size: 2.2rem;
+            color: #f59e0b;
+            margin-bottom: 15px;
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .unlit-overlay p {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            max-width: 220px;
+            line-height: 1.4;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(245,158,11,0.2)); }
+            100% { transform: scale(1.08); filter: drop-shadow(0 0 12px rgba(245,158,11,0.6)); }
+        }
+
+        /* Active illuminated results structure */
+        body.lamp-active .unlit-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body.lamp-active .results-panel {
+            border-color: rgba(253, 224, 71, 0.3);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 
+                        0 0 30px rgba(253, 224, 71, 0.05),
+                        inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .results-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+        }
+
+        /* Dynamic Circular Liquid GPA Display */
+        .gpa-circle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .gpa-ring {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            /* True 3D sphere: specular highlight (top-left) + rim light (bottom-right) + deep ambient */
+            background:
+                radial-gradient(ellipse at 32% 28%, rgba(255,255,255,0.55) 0%, transparent 35%),
+                radial-gradient(ellipse at 72% 76%, rgba(212,175,55,0.35) 0%, transparent 38%),
+                radial-gradient(ellipse at 50% 50%, rgba(30,30,70,0.92) 0%, rgba(6,8,20,1.0) 100%);
+            border: none;
+            outline: 1px solid rgba(255,255,255,0.10);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            /* Layered sphere shadow: contact shadow + ambient glow + inner shading */
+            box-shadow:
+                /* inner: top bright, bottom dark = curvature */
+                inset 0  8px 20px rgba(255,255,255,0.10),
+                inset 0 -12px 24px rgba(0,0,0,0.65),
+                inset 6px 0  16px rgba(255,255,255,0.04),
+                inset -6px 0 12px rgba(0,0,0,0.30),
+                /* outer: cast shadow below + gold glow */
+                0 18px 50px rgba(0,0,0,0.75),
+                0 6px  20px rgba(0,0,0,0.55),
+                0 0   40px  rgba(212,175,55,0.18),
+                0 0   80px  rgba(212,175,55,0.08);
+            transition: box-shadow 0.4s, outline 0.4s;
+            transform-style: preserve-3d;
+        }
+        /* Orbit ring 1 */
+        .gpa-ring::before {
+            content: '';
+            position: absolute;
+            width: 172px;
+            height: 172px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,175,55,0.22);
+            box-shadow: 0 0 12px rgba(212,175,55,0.10);
+            animation: orbitSpin 8s linear infinite;
+            pointer-events: none;
+        }
+        /* Orbit ring 2 */
+        .gpa-ring::after {
+            content: '';
+            position: absolute;
+            width: 194px;
+            height: 194px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,175,55,0.12);
+            animation: orbitSpin 14s linear infinite reverse;
+            pointer-events: none;
+        }
+        @keyframes orbitSpin {
+            from { transform: rotate(0deg) rotateX(65deg); }
+            to   { transform: rotate(360deg) rotateX(65deg); }
+        }
+        body.lamp-active .gpa-ring {
+            background:
+                radial-gradient(ellipse at 32% 28%, rgba(255,255,240,0.65) 0%, transparent 38%),
+                radial-gradient(ellipse at 72% 76%, rgba(253,200,50,0.45) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(50,40,10,0.92) 0%, rgba(15,12,4,1.0) 100%);
+            box-shadow:
+                inset 0  8px 20px rgba(255,255,180,0.18),
+                inset 0 -12px 24px rgba(0,0,0,0.65),
+                0 18px 50px rgba(0,0,0,0.75),
+                0 0   40px  rgba(253,224,71,0.28),
+                0 0   80px  rgba(253,224,71,0.12);
+            outline: 1px solid rgba(253,224,71,0.30);
+        }
+        body.lamp-active .gpa-ring::before { border-color: rgba(253,224,71,0.35); box-shadow: 0 0 14px rgba(253,224,71,0.12); }
+        body.lamp-active .gpa-ring::after  { border-color: rgba(253,224,71,0.18); }
+
+        .gpa-ring-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.35),
+                0 2px  6px rgba(0,0,0,0.60),
+                0 4px 12px rgba(0,0,0,0.40);
+        }
+
+        .gpa-ring-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Results parameters breakdown grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(0,0,0,0.28));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255,255,255,0.12);
+            border-left: 1px solid rgba(255,255,255,0.10);
+            border-radius: 14px;
+            padding: 14px 12px;
+            text-align: center;
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.30),
+                0 8px 24px rgba(0,0,0,0.20),
+                inset 0 1px 0 rgba(255,255,255,0.08),
+                inset 0 -1px 0 rgba(0,0,0,0.25);
+            transform: translateY(0);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 10px 24px rgba(0,0,0,0.32),
+                0 18px 42px rgba(0,0,0,0.20),
+                inset 0 1px 0 rgba(255,255,255,0.12),
+                0 0 18px rgba(212,175,55,0.14);
+        }
+
+        .stat-card-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .stat-card-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* CGPA overall output card */
+        .overall-result-box {
+            background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(184,134,11,0.08));
+            border: 1px solid rgba(212,175,55,0.25);
+            border-top: 1px solid rgba(212,175,55,0.40);
+            border-left: 1px solid rgba(212,175,55,0.35);
+            border-radius: 16px;
+            padding: 15px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow:
+                0 4px 16px rgba(184,134,11,0.15),
+                0 10px 30px rgba(0,0,0,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+            transform: perspective(600px) translateZ(4px);
+        }
+
+        .overall-result-box span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #e8d28a;
+        }
+
+        .overall-result-box strong {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* Standing badge tags for BU academic policy guidelines */
+        .standing-badge {
+            text-align: center;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .standing-normal {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .standing-gold {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.05);
+        }
+
+        .standing-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .standing-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .standing-warning {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            animation: warningFlash 1s infinite alternate;
+        }
+
+        @keyframes warningFlash {
+            0% { opacity: 0.85; }
+            100% { opacity: 1; }
+        }
+
+        /* Spatial Popup Overlay Dialog Box (No textures, sharp vectors) */
+        .glass-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(6, 8, 14, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .glass-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .glass-modal-card {
+            width: 90%;
+            max-width: 480px;
+            padding: 30px;
+            border-radius: 28px;
+            transform: scale(0.85) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.25, 1.2, 0.5, 1.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(20, 24, 38, 0.85); /* Slightly darker solid background for extreme contrast */
+        }
+
+        .glass-modal-overlay.active .glass-modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .modal-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 15px;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* custom interactive glass buttons in the popup list */
+        .glass-option-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .glass-option-btn:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(184, 134, 11, 0.10));
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .glass-option-btn h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.35rem;
+        }
+
+        .glass-option-btn span {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Fix: header must NOT inherit the 3D perspective lean ── */
+        header.glass-panel {
+            transform: none !important;
+            transition: box-shadow 0.3s ease;
+        }
+        header.glass-panel:hover {
+            transform: none !important;
+        }
+
+        /* ── Fix: allow text selection inside input fields (Safari/mobile) ── */
+        input, textarea, [contenteditable] {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+        }
+
+        /* ── Scroll-triggered reveal animations ──
+           .reveal    -> opacity only. Used on header/#inputCard/#resultsCard because
+                          init3DSystem() overwrites their inline transform every frame,
+                          so a transform-based reveal would be instantly clobbered.
+           .reveal-up -> opacity + slide-up. Safe on static inner elements that JS never touches. */
+        .reveal {
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .right-side {
+                order: -1; /* Place results at top on mobile for better usability */
+                margin-bottom: 20px;
+            }
+
+            .lamp-assembly {
+                height: 190px;
+            }
+
+            .hanging-string {
+                height: 50px;
+            }
+
+            .pull-cord {
+                top: 90px;
+            }
+
+            .beaded-chain {
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .course-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .delete-btn {
+                width: 100%;
+                margin-top: 5px;
+            }
+
+            .cgpa-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Logo and App Description Header -->
+        <header class="glass-panel reveal">
+            <!-- Logo: hard-coded, static image. Not clickable / not editable by end user. -->
+            <div class="logo-container" id="logoContainer">
+                <img id="headerLogo" src="afaqahmad.png" alt="Afaq Ahmad Logo" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+            </div>
+            <h1>BAHRIA UNIVERSITY</h1>
+            <p>Created by Afaq Ahmad • Independently developed • No affiliation with Bahria University</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Dynamic Form Inputs -->
+            <div class="left-side glass-panel reveal" id="inputCard">
+                <div class="section-header reveal-up">
+                    <h2>Grade Registry</h2>
+                    <!-- Bahria University Absolute Grading Scale -->
+                    <div class="scheme-selector" style="background: transparent; border: none; padding: 0;">
+                        <span style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 500; padding: 8px 14px;">Absolute Scale</span>
+                    </div>
+                </div>
+
+                <!-- Courses Container starts completely empty by default -->
+                <div class="courses-container reveal-up" id="coursesList">
+                    <div class="empty-state" id="emptyStatePlaceholder">
+                        <i class="far fa-folder-open"></i>
+                        <h3>Registry is Empty</h3>
+                        <p>No semesters or courses have been registered yet. Click "Add Course" below to specify your values.</p>
+                    </div>
+                </div>
+
+                <div class="controls-row reveal-up">
+                    <button class="glass-btn primary" onclick="addCourseRow()">
+                        <i class="fas fa-plus"></i> Add Course
+                    </button>
+                    <button class="glass-btn" onclick="resetForm()">
+                        <i class="fas fa-arrows-rotate"></i> Reset
+                    </button>
+                </div>
+
+                <!-- Previous Semesters overall CGPA inputs -->
+                <div class="overall-cgpa-section reveal-up">
+                    <h3>Integrate Previous Semesters (Optional)</h3>
+                    <div class="cgpa-inputs">
+                        <div class="cgpa-input-group">
+                            <input type="number" step="0.01" min="0" max="4" id="prevCgpa" placeholder="Previous Cumulative GPA" oninput="onLiveInputChange()">
+                        </div>
+                        <div class="cgpa-input-group">
+                            <input type="number" step="1" min="0" id="prevCredits" placeholder="Total Previous Credit Hours" oninput="onLiveInputChange()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Hanging Lamp & Glass Output Target -->
+            <div class="right-side">
+                <div class="lamp-assembly" id="lampAssembly">
+                    <div class="ceiling-mount"></div>
+                    <div class="hanging-string"></div>
+                    <div class="lamp-housing">
+                        <div class="bulb" id="lampBulb"></div>
+                    </div>
+                    <!-- Hanging String Handle -->
+                    <div class="pull-cord" id="pullCord">
+                        <div class="beaded-chain" id="beadedChain"></div>
+                        <div class="pull-pendant"></div>
+                    </div>
+                </div>
+
+                <!-- Spotlight overlay -->
+                <div class="light-cone" id="lightCone"></div>
+
+                <!-- Glass Output Terminal Screen -->
+                <div class="results-panel glass-panel reveal" id="resultsCard">
+                    <!-- Cover overlay before light is turned on -->
+                    <div class="unlit-overlay" id="unlitMask">
+                        <i class="far fa-lightbulb"></i>
+                        <p>PULL THE GOLD CHAIN ON THE LAMP TO CALCULATE GPA</p>
+                    </div>
+
+                    <div class="results-content">
+                        <div class="results-header reveal-up">
+                            <h3>Semester Report</h3>
+                        </div>
+
+                        <div class="gpa-circle-container reveal-up">
+                            <div class="gpa-ring">
+                                <span class="gpa-ring-value" id="sgpaDisplay">0.00</span>
+                                <span class="gpa-ring-label">SGPA</span>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid reveal-up">
+                            <div class="stat-card">
+                                <p class="stat-card-label">Total Credits</p>
+                                <p class="stat-card-value" id="creditsDisplay">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <p class="stat-card-label">Quality Points</p>
+                                <p class="stat-card-value" id="qpDisplay">0.0</p>
+                            </div>
+                        </div>
+
+                        <div class="overall-result-box" id="overallCgpaBox" style="display: none;">
+                            <span>Cumulative CGPA</span>
+                            <strong id="cgpaDisplay">0.00</strong>
+                        </div>
+
+                        <div class="standing-badge standing-normal" id="standingBadge">
+                            Calculating standings...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spatial Popup Overlay Dialog Box -->
+    <div class="glass-modal-overlay" id="customModalOverlay">
+        <div class="glass-modal-card" id="customModalCard">
+            <div class="modal-header">
+                <h3 id="modalTitle">Select Option</h3>
+                <button class="modal-close-btn" onclick="closeCustomModal()">&times;</button>
+            </div>
+            <div class="modal-options-grid" id="modalOptionsContainer">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Official Bahria University Absolute Grading Scale
+        const gradingScales = {
+            absolute: [
+                { grade: 'A',  gp: 4.0, range: '85-100%' },
+                { grade: 'A-', gp: 3.7, range: '80-84%' },
+                { grade: 'B+', gp: 3.3, range: '75-79%' },
+                { grade: 'B',  gp: 3.0, range: '71-74%' },
+                { grade: 'B-', gp: 2.7, range: '68-70%' },
+                { grade: 'C+', gp: 2.3, range: '64-67%' },
+                { grade: 'C',  gp: 2.0, range: '60-63%' },
+                { grade: 'C-', gp: 1.7, range: '57-59%' },
+                { grade: 'D+', gp: 1.3, range: '53-56%' },
+                { grade: 'D',  gp: 1.0, range: '50-52%' },
+                { grade: 'F',  gp: 0.0, range: '0-49%' }
+            ]
+        };
+
+        let activeScale = 'absolute';
+        let rowIdCounter = 0;
+        let lampActive = false;
+
+        let modalTargetRowId = null;
+        let modalTargetFieldType = null; // 'credit' or 'grade'
+
+        // Sound synthesizer (Web Audio API) for realistic chain toggles & pop-ups
+        function playClickSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Solid click tone
+                const clickOsc = audioCtx.createOscillator();
+                const clickGain = audioCtx.createGain();
+                clickOsc.connect(clickGain);
+                clickGain.connect(audioCtx.destination);
+                
+                clickOsc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+                clickOsc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.06);
+                
+                clickGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+                clickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.06);
+                
+                clickOsc.start();
+                clickOsc.stop(audioCtx.currentTime + 0.06);
+
+                // Neon lamp buzzing hum on turning active
+                if (!lampActive) {
+                    const humOsc = audioCtx.createOscillator();
+                    const humGain = audioCtx.createGain();
+                    humOsc.type = 'triangle';
+                    humOsc.connect(humGain);
+                    humGain.connect(audioCtx.destination);
+                    
+                    humOsc.frequency.setValueAtTime(100, audioCtx.currentTime);
+                    humGain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    humGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.25);
+                    
+                    humOsc.start();
+                    humOsc.stop(audioCtx.currentTime + 0.3);
+                }
+            } catch (err) {
+                // Fail-safe if Web Audio API is locked or unsupported
+            }
+        }
+
+        // Render dynamic row (initially empty of variables)
+        function addCourseRow(name = "") {
+            // Remove the empty registry placeholder on first course registration
+            const emptyPlaceholder = document.getElementById('emptyStatePlaceholder');
+            if (emptyPlaceholder) {
+                emptyPlaceholder.remove();
+            }
+
+            const container = document.getElementById('coursesList');
+            const rowId = `course-row-${rowIdCounter++}`;
+            
+            const row = document.createElement('div');
+            row.className = 'course-row';
+            row.id = rowId;
+
+            // Course Name Input (starts blank)
+            const nameDiv = document.createElement('div');
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.placeholder = 'Subject Name';
+            nameInput.value = name;
+            nameInput.oninput = onLiveInputChange;
+            nameDiv.appendChild(nameInput);
+
+            // Credit Hour Popup Trigger (no native dropdown, starts empty)
+            const creditDiv = document.createElement('div');
+            const creditTrigger = document.createElement('div');
+            creditTrigger.className = 'popup-selector-trigger unfilled';
+            creditTrigger.id = `credit-trigger-${row.id}`;
+            creditTrigger.innerHTML = '<span>Choose Credits</span> <i class="fas fa-cubes"></i>';
+            creditTrigger.onclick = () => openCreditPopup(row.id);
+            creditDiv.appendChild(creditTrigger);
+
+            // Grade Selector Popup Trigger (no native dropdown, starts empty)
+            const gradeDiv = document.createElement('div');
+            const gradeTrigger = document.createElement('div');
+            gradeTrigger.className = 'popup-selector-trigger unfilled';
+            gradeTrigger.id = `grade-trigger-${row.id}`;
+            gradeTrigger.innerHTML = '<span>Choose Grade</span> <i class="fas fa-graduation-cap"></i>';
+            gradeTrigger.onclick = () => openGradePopup(row.id);
+            gradeDiv.appendChild(gradeTrigger);
+
+            // Row Delete Button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+            deleteBtn.onclick = () => {
+                row.remove();
+                verifyEmptyState();
+                onLiveInputChange();
+            };
+
+            row.appendChild(nameDiv);
+            row.appendChild(creditDiv);
+            row.appendChild(gradeDiv);
+            row.appendChild(deleteBtn);
+            container.appendChild(row);
+        }
+
+        // Check if registry has become empty, restoring placeholder elements if so
+        function verifyEmptyState() {
+            const container = document.getElementById('coursesList');
+            if (container.children.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" id="emptyStatePlaceholder">
+                        <i class="far fa-folder-open"></i>
+                        <h3>Registry is Empty</h3>
+                        <p>No semesters or courses have been registered yet. Click "Add Course" below to specify your values.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Custom Selection Popup List: Credit Hours
+        function openCreditPopup(rowId) {
+            modalTargetRowId = rowId;
+            modalTargetFieldType = 'credit';
+
+            const title = document.getElementById('modalTitle');
+            const container = document.getElementById('modalOptionsContainer');
+            
+            title.textContent = "Select Credit Hours";
+            container.innerHTML = '';
+
+            // Render interactive cards for selection
+            const creditsList = [1, 2, 3, 4];
+            creditsList.forEach(c => {
+                const optBtn = document.createElement('div');
+                optBtn.className = 'glass-option-btn';
+                optBtn.innerHTML = `
+                    <h4>${c}</h4>
+                    <span>Credit Hour${c > 1 ? 's' : ''}</span>
+                `;
+                optBtn.onclick = () => registerPopupChoice(c, `${c} Cr. Hr.`);
+                container.appendChild(optBtn);
+            });
+
+            openCustomModal();
+        }
+
+        // Custom Selection Popup List: Course Grades
+        function openGradePopup(rowId) {
+            modalTargetRowId = rowId;
+            modalTargetFieldType = 'grade';
+
+            const title = document.getElementById('modalTitle');
+            const container = document.getElementById('modalOptionsContainer');
+            
+            title.textContent = "Select Course Grade";
+            container.innerHTML = '';
+
+            // Render interactive cards dynamically matching the active grading scheme
+            const currentScaleData = gradingScales[activeScale];
+            currentScaleData.forEach(g => {
+                const optBtn = document.createElement('div');
+                optBtn.className = 'glass-option-btn';
+                optBtn.innerHTML = `
+                    <h4>${g.grade}</h4>
+                    <span>Points: ${g.gp.toFixed(2)} (${g.range})</span>
+                `;
+                optBtn.onclick = () => registerPopupChoice(g.gp, `${g.grade} (${g.range})`, g.grade);
+                container.appendChild(optBtn);
+            });
+
+            openCustomModal();
+        }
+
+        // Write the chosen values to our customized fields
+        function registerPopupChoice(val, textLabel, absoluteGradeLabel = '') {
+            const trigger = document.getElementById(`${modalTargetFieldType}-trigger-${modalTargetRowId}`);
+            if (trigger) {
+                trigger.classList.remove('unfilled');
+                trigger.classList.add('filled');
+                trigger.querySelector('span').textContent = absoluteGradeLabel ? absoluteGradeLabel : textLabel;
+                // Bind the computed values to properties inside dataset variables
+                trigger.dataset.computedValue = val;
+            }
+
+            closeCustomModal();
+            playClickSound();
+            onLiveInputChange();
+        }
+
+        // General custom warning prompt overlays (replaces default native pop-ups)
+        function showGlassPromptOverlay(message) {
+            const title = document.getElementById('modalTitle');
+            const container = document.getElementById('modalOptionsContainer');
+            
+            title.textContent = "Calculation Interrupted";
+            container.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 15px 5px;">
+                    <i class="fas fa-triangle-exclamation" style="font-size: 2.8rem; color: #ef4444; margin-bottom: 15px; display: block;"></i>
+                    <p style="color: #f8fafc; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">${message}</p>
+                    <button class="glass-btn primary" onclick="closeCustomModal()" style="margin: 0 auto; width: 140px; justify-content: center;">Acknowledge</button>
+                </div>
+            `;
+            
+            openCustomModal();
+        }
+
+        function openCustomModal() {
+            document.getElementById('customModalOverlay').classList.add('active');
+            playClickSound();
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModalOverlay').classList.remove('active');
+        }
+
+        // Clear dynamic elements and reset form variables
+        function resetForm() {
+            document.getElementById('coursesList').innerHTML = '';
+            document.getElementById('prevCgpa').value = '';
+            document.getElementById('prevCredits').value = '';
+            
+            verifyEmptyState();
+            
+            if (lampActive) {
+                turnLampOff();
+            }
+        }
+
+        // Lamp toggle and click string pulling execution
+        function initPullCordPhysics() {
+            const pullCord = document.getElementById('pullCord');
+            const beadedChain = document.getElementById('beadedChain');
+            
+            let dragging = false;
+            let startY = 0;
+            let currentDragY = 0;
+        let touchStarted = false;
+            const maxPullDistance = 60;
+
+            const handleStart = (e) => {
+                dragging = true;
+                startY = e.clientY || e.touches[0].clientY;
+                beadedChain.style.transition = 'none';
+                pullCord.style.transition = 'none';
+                document.addEventListener('mousemove', handleMove);
+                document.addEventListener('touchmove', handleMove, { passive: false });
+                document.addEventListener('mouseup', handleEnd);
+                document.addEventListener('touchend', handleEnd);
+            };
+
+            const handleMove = (e) => {
+                if (!dragging) return;
+                // Safely block default scroll events while pulling the chain on mobile
+                if (e.cancelable) e.preventDefault();
+                
+                const clientY = e.clientY || e.touches[0].clientY;
+                let deltaY = clientY - startY;
+                if (deltaY < 0) deltaY = 0;
+                if (deltaY > maxPullDistance) deltaY = maxPullDistance;
+                currentDragY = deltaY;
+
+                beadedChain.style.height = `${90 + currentDragY}px`;
+                pullCord.style.transform = `translateY(${currentDragY}px)`;
+            };
+
+            const handleEnd = () => {
+                if (!dragging) return;
+                dragging = false;
+                
+                document.removeEventListener('mousemove', handleMove);
+                document.removeEventListener('touchmove', handleMove);
+                document.removeEventListener('mouseup', handleEnd);
+                document.removeEventListener('touchend', handleEnd);
+
+                // Quick bounce spring-back transition animation
+                beadedChain.style.transition = 'height 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
+                pullCord.style.transition = 'transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
+                beadedChain.style.height = '90px';
+                pullCord.style.transform = 'translateY(0px)';
+
+                // Execute logic trigger past pull threshold
+                if (currentDragY > 15) {
+                    toggleLamp();
+                }
+                currentDragY = 0;
+            };
+
+            pullCord.addEventListener('mousedown', handleStart);
+            pullCord.addEventListener('touchstart', handleStart, { passive: true });
+
+            // Standard click option fallback
+            pullCord.addEventListener('click', (e) => {
+                if (touchStarted) {
+                    touchStarted = false;
+                    return;
+                }
+                if (currentDragY > 5) return; // ignore click logic during release transitions
+                
+                beadedChain.style.transition = 'height 0.15s ease-out';
+                pullCord.style.transition = 'transform 0.15s ease-out';
+                beadedChain.style.height = '120px';
+                pullCord.style.transform = 'translateY(30px)';
+
+                setTimeout(() => {
+                    beadedChain.style.transition = 'height 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
+                    pullCord.style.transition = 'transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
+                    beadedChain.style.height = '90px';
+                    pullCord.style.transform = 'translateY(0px)';
+                    toggleLamp();
+                }, 150);
+            });
+        }
+
+        function toggleLamp() {
+            // If turning the lamp on, verify input details first
+            if (!lampActive) {
+                if (!validateInputEntries()) {
+                    return; // Abort toggle completely
+                }
+                lampActive = true;
+                document.body.classList.add('lamp-active');
+                calculateResults();
+            } else {
+                turnLampOff();
+            }
+            playClickSound();
+        }
+
+        // Strict input check before running engine calculations
+        function validateInputEntries() {
+            const rows = document.querySelectorAll('.course-row');
+            if (rows.length === 0) {
+                showGlassPromptOverlay("Your Grade Registry is completely empty. Please click 'Add Course' to register your semester modules before pulling the cord.");
+                return false;
+            }
+
+            let entriesUnfilled = false;
+            rows.forEach(row => {
+                const creditVal = row.querySelector('[id^="credit-trigger-"]').dataset.computedValue;
+                const gradeVal = row.querySelector('[id^="grade-trigger-"]').dataset.computedValue;
+                
+                if (!creditVal || !gradeVal) {
+                    entriesUnfilled = true;
+                }
+            });
+
+            if (entriesUnfilled) {
+                showGlassPromptOverlay("Specify the Credit Hours and Grade for all courses. Missing values cannot be assumed.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function turnLampOff() {
+            lampActive = false;
+            document.body.classList.remove('lamp-active');
+        }
+
+        // Live calculation update (flickers rather than sliding up/down if lamp is active)
+        function onLiveInputChange() {
+            if (lampActive) {
+                // If inputs become invalid during live changes, shut off the lamp
+                if (!validateInputEntries()) {
+                    turnLampOff();
+                    return;
+                }
+                calculateResults(true); 
+            }
+        }
+
+        function flickerLamp() {
+            document.body.classList.remove('lamp-active');
+            setTimeout(() => {
+                if (validateInputEntries()) {
+                    document.body.classList.add('lamp-active');
+                    calculateResults();
+                } else {
+                    turnLampOff();
+                }
+            }, 100);
+        }
+
+        // Mathematical GPA Engine
+        function calculateResults(isLiveUpdate = false) {
+            const rows = document.querySelectorAll('.course-row');
+            let totalCredits = 0;
+            let totalQualityPoints = 0;
+
+            rows.forEach(row => {
+                const credits = parseFloat(row.querySelector('[id^="credit-trigger-"]').dataset.computedValue) || 0;
+                const gp = parseFloat(row.querySelector('[id^="grade-trigger-"]').dataset.computedValue) || 0.0;
+                
+                totalCredits += credits;
+                totalQualityPoints += (gp * credits);
+            });
+
+            // Semester GPA Calculation (SGPA = Sum(GP * Credits) / Sum(Credits))
+            let sgpa = 0.00;
+            if (totalCredits > 0) {
+                sgpa = totalQualityPoints / totalCredits;
+            }
+
+            // Optional Cumulative calculation parameters
+            const prevCgpaInput = parseFloat(document.getElementById('prevCgpa').value);
+            const prevCreditsInput = parseFloat(document.getElementById('prevCredits').value);
+
+            // Validate prevCgpa is within legal GPA range (0.00 – 4.00)
+            const prevCgpaField = document.getElementById('prevCgpa');
+            const cgpaBox = document.getElementById('overallCgpaBox');
+
+            if (!isNaN(prevCgpaInput) && (prevCgpaInput < 0 || prevCgpaInput > 4.0)) {
+                prevCgpaField.style.borderColor = 'rgba(239,68,68,0.7)';
+                prevCgpaField.style.boxShadow  = '0 0 8px rgba(239,68,68,0.3)';
+                prevCgpaField.title = 'CGPA must be between 0.00 and 4.00';
+                // Dim CGPA box to indicate calculation is disabled for invalid input
+                if (cgpaBox.style.display !== 'none') {
+                    cgpaBox.style.opacity = '0.5';
+                    cgpaBox.title = 'Invalid previous CGPA entered. CGPA calculation disabled.';
+                }
+            } else {
+                prevCgpaField.style.borderColor = '';
+                prevCgpaField.style.boxShadow  = '';
+                prevCgpaField.title = '';
+                cgpaBox.style.opacity = '1';
+                cgpaBox.title = '';
+            }
+
+            const prevCgpaValid = !isNaN(prevCgpaInput) && prevCgpaInput >= 0 && prevCgpaInput <= 4.0;
+            
+            let combinedCgpa = 0.00;
+            const hasCgpaInput = (prevCgpaValid && !isNaN(prevCreditsInput) && prevCreditsInput > 0);
+            
+            if (hasCgpaInput) {
+                const prevTotalQP = prevCgpaInput * prevCreditsInput;
+                combinedCgpa = (prevTotalQP + totalQualityPoints) / (prevCreditsInput + totalCredits);
+            }
+
+            updateResultsUI(sgpa, totalCredits, totalQualityPoints, combinedCgpa, hasCgpaInput, isLiveUpdate);
+        }
+
+        // Update presentation displays
+        function updateResultsUI(sgpa, totalCredits, totalQP, combinedCgpa, hasCgpa, isLiveUpdate) {
+            const sgpaEl = document.getElementById('sgpaDisplay');
+            const creditsEl = document.getElementById('creditsDisplay');
+            const qpEl = document.getElementById('qpDisplay');
+            const cgpaBox = document.getElementById('overallCgpaBox');
+            const cgpaEl = document.getElementById('cgpaDisplay');
+            const standingBadge = document.getElementById('standingBadge');
+
+            if (isLiveUpdate) {
+                // Instantly update elements
+                sgpaEl.textContent = sgpa.toFixed(2);
+                creditsEl.textContent = totalCredits;
+                qpEl.textContent = totalQP.toFixed(1);
+                
+                if (hasCgpa) {
+                    cgpaBox.style.display = 'flex';
+                    cgpaEl.textContent = combinedCgpa.toFixed(2);
+                } else {
+                    cgpaBox.style.display = 'none';
+                }
+            } else {
+                // Liquid flow visual count animation
+                animateNumericalValue(sgpaEl, 0.00, sgpa, 1000, 2);
+                animateNumericalValue(qpEl, 0.0, totalQP, 1000, 1);
+                creditsEl.textContent = totalCredits;
+
+                if (hasCgpa) {
+                    cgpaBox.style.display = 'flex';
+                    animateNumericalValue(cgpaEl, 0.00, combinedCgpa, 1000, 2);
+                } else {
+                    cgpaBox.style.display = 'none';
+                }
+            }
+
+            // Evaluation of standings matching Bahria standard policy guidelines
+            let badgeClass = 'standing-normal';
+            let badgeText  = 'Good Academic Standing';
+
+            const evaluationTarget = hasCgpa ? combinedCgpa : sgpa;
+
+            // Dean's List: SGPA ≥ 3.50, full semester load, AND combined CGPA ≥ 3.50 if available
+            const cgpaQualifies = !hasCgpa || combinedCgpa >= 3.50;
+
+            if (sgpa >= 3.50 && totalCredits >= 15 && cgpaQualifies) {
+                badgeText  = "Eligible for Dean's List!";
+                badgeClass = 'standing-gold';
+            } else if (evaluationTarget >= 3.50) {
+                badgeText  = "Outstanding Performance!";
+                badgeClass = 'standing-green';
+            } else if (evaluationTarget >= 3.00) {
+                badgeText  = "Sufficient / Good Performance";
+                badgeClass = 'standing-blue';
+            } else if (evaluationTarget >= 2.00) {
+                badgeText  = "Satisfactory Standing";
+                badgeClass = 'standing-normal';
+            } else if (evaluationTarget > 0.01) {
+                // Use correct label depending on whether combined CGPA exists
+                const gpLabel = hasCgpa ? 'CGPA' : 'SGPA';
+                badgeText  = `Probation Warning! ${gpLabel} < 2.00`;
+                badgeClass = 'standing-warning';
+            } else {
+                badgeText  = 'Calculating standings...';
+                badgeClass = 'standing-normal';
+            }
+
+            standingBadge.className = `standing-badge ${badgeClass}`;
+            standingBadge.textContent = badgeText;
+        }
+
+        // ─── Animation cancellation registry ─────────────────────────────────────────
+        const activeAnimations = new Map();
+
+        // Numerical counting interpolation
+        function animateNumericalValue(element, start, end, duration, decimalPlaces = 2) {
+            // Cancel any existing animation on this element
+            if (activeAnimations.has(element)) {
+                cancelAnimationFrame(activeAnimations.get(element));
+                activeAnimations.delete(element);
+            }
+
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = progress * (end - start) + start;
+                element.textContent = currentValue.toFixed(decimalPlaces);
+                if (progress < 1) {
+                    const rafId = requestAnimationFrame(step);
+                    activeAnimations.set(element, rafId);
+                } else {
+                    element.textContent = end.toFixed(decimalPlaces);
+                    activeAnimations.delete(element);
+                }
+            };
+            const rafId = requestAnimationFrame(step);
+            activeAnimations.set(element, rafId);
+        }
+
+        // ─── Global Mouse Light Source ─────────────────────────────────────────────
+        // Tracks mouse and moves a specular highlight across the body,
+        // making the whole scene respond to a single moving light position.
+        (function initMouseLight() {
+            let lx = 0.5, ly = 0.3; // light position (normalised 0–1)
+            document.addEventListener('mousemove', e => {
+                lx = e.clientX / window.innerWidth;
+                ly = e.clientY / window.innerHeight;
+                document.documentElement.style.setProperty('--lx', lx.toFixed(3));
+                document.documentElement.style.setProperty('--ly', ly.toFixed(3));
+            });
+        })();
+
+        // ─── Unified 3D Transform System ─────────────────────────────────────────
+        // Single RAF loop owns ALL transforms on both cards.
+        // Mouse events only write to state — they NEVER call style.transform directly.
+        // This prevents scroll RAF from overwriting mouse tilt every 16 ms.
+        function init3DSystem() {
+            let currentScroll = 0;
+            let targetScroll  = 0;
+            const EASE       = 0.08;
+            const BASE_TILT  = 1.5;   // permanent lean so panels have depth even at rest
+
+            // Per-card mouse state (written by events, read by RAF)
+            const state = {
+                inputCard:   { el: document.getElementById('inputCard'),   dx: 0, dy: 0, hover: false },
+                resultsCard: { el: document.getElementById('resultsCard'), dx: 0, dy: 0, hover: false }
+            };
+
+            window.addEventListener('scroll', () => { targetScroll = window.scrollY; }, { passive: true });
+
+            // Attach mouse listeners — only update state, never touch style.transform here
+            Object.values(state).forEach(card => {
+                if (!card.el) return;
+
+                card.el.addEventListener('mousemove', e => {
+                    const r  = card.el.getBoundingClientRect();
+                    card.dx  = (e.clientX - r.left - r.width  / 2) / (r.width  / 2); // –1…+1
+                    card.dy  = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+                    card.hover = true;
+                });
+
+                card.el.addEventListener('mouseleave', () => {
+                    card.dx    = 0;
+                    card.dy    = 0;
+                    card.hover = false;
+                });
+            });
+
+            function tick() {
+                currentScroll += (targetScroll - currentScroll) * EASE;
+
+                // ── Input card ──────────────────────────────────────────────────
+                const ic = state.inputCard;
+                if (ic.el) {
+                    if (ic.hover) {
+                        const rx = -ic.dy * 3;
+                        const ry =  ic.dx * 3;
+                        ic.el.style.transition = 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease';
+                        ic.el.style.transform  =
+                            `perspective(1400px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px)`;
+                        ic.el.style.boxShadow  =
+                            `0 24px 60px rgba(0,0,0,0.40),
+                             0 6px 18px rgba(0,0,0,0.30),
+                             inset 0 1px 0 rgba(255,255,255,0.14)`;
+                    } else {
+                        const rx = BASE_TILT + Math.min(currentScroll * 0.012, 6); // base + scroll
+                        const ry = Math.sin(currentScroll * 0.002) * 2;
+                        const ty = currentScroll * -0.06;
+                        ic.el.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.55s ease';
+                        ic.el.style.transform  =
+                            `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(${ty}px)`;
+                        ic.el.style.boxShadow  = '';
+                    }
+                }
+
+                // ── Results card ────────────────────────────────────────────────
+                const rc = state.resultsCard;
+                if (rc.el) {
+                    if (rc.hover) {
+                        const rx = -rc.dy * 3;
+                        const ry =  rc.dx * 3;
+                        rc.el.style.transition = 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease';
+                        rc.el.style.transform  =
+                            `perspective(1400px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px)`;
+                        rc.el.style.boxShadow  =
+                            `0 24px 60px rgba(0,0,0,0.40),
+                             0 6px 18px rgba(0,0,0,0.30),
+                             inset 0 1px 0 rgba(255,255,255,0.14)`;
+                    } else {
+                        const rx = BASE_TILT + Math.max(currentScroll * -0.012, -6); // base + scroll
+                        const ry = Math.cos(currentScroll * 0.002) * -2;
+                        const ty = currentScroll * -0.09;
+                        rc.el.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.55s ease';
+                        rc.el.style.transform  =
+                            `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(${ty}px)`;
+                        rc.el.style.boxShadow  = '';
+                    }
+                }
+
+                // ── Lamp kinetic sway ───────────────────────────────────────────
+                const lamp = document.getElementById('lampAssembly');
+                if (lamp) {
+                    const sway = Math.sin(currentScroll * 0.012) * Math.min(currentScroll * 0.04, 6);
+                    lamp.style.transform = `rotate(${sway}deg)`;
+                }
+
+                // ── Blob depth parallax ─────────────────────────────────────────
+                const b1 = document.querySelector('.blob-1');
+                const b2 = document.querySelector('.blob-2');
+                const b3 = document.querySelector('.blob-3');
+                if (b1) b1.style.transform = `translateY(${currentScroll *  0.18}px)`;
+                if (b2) b2.style.transform = `translateY(${currentScroll * -0.12}px)`;
+                if (b3) b3.style.transform = `translateY(${currentScroll *  0.08}px)`;
+
+                requestAnimationFrame(tick);
+            }
+
+            tick();
+        }
+
+        // ─── Perspective Grid Floor ────────────────────────────────────────────────
+        function injectPerspectiveGrid() {
+            const W = 2000, H = 400;
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            // viewBox + preserveAspectRatio so grid scales correctly on every screen size
+            svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+            svg.setAttribute('preserveAspectRatio', 'none');
+            Object.assign(svg.style, {
+                position: 'fixed', bottom: '0', left: '0',
+                width: '100%', height: '45vh',
+                zIndex: '0', opacity: '0.10', pointerEvents: 'none',
+                overflow: 'visible',
+            });
+
+            const vx = W / 2, vy = 0;
+            const cols = 18, rows = 10;
+            let paths = '';
+
+            for (let i = 0; i <= cols; i++) {
+                const bx = (W / cols) * i;
+                paths += `<line x1="${vx}" y1="${vy}" x2="${bx}" y2="${H}" stroke="rgba(212,175,55,1)" stroke-width="1.2"/>`;
+            }
+            for (let j = 1; j <= rows; j++) {
+                const t  = j / rows;
+                const y  = vy + t * H;
+                const x1 = vx + (0 - vx) * t;
+                const x2 = vx + (W - vx) * t;
+                paths += `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="rgba(212,175,55,1)" stroke-width="1.2"/>`;
+            }
+
+            svg.innerHTML = paths;
+            document.body.insertBefore(svg, document.body.firstChild);
+        }
+
+        // ─── Scroll-triggered reveal animations ───────────────────────────────────
+        // Watches .reveal / .reveal-up elements and fades/slides them in once they
+        // enter the viewport, with a slight cascading stagger between elements.
+        function initScrollReveal() {
+            const revealEls = document.querySelectorAll('.reveal, .reveal-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            revealEls.forEach((el, i) => {
+                el.style.transitionDelay = `${Math.min(i * 0.08, 0.6)}s`;
+                observer.observe(el);
+            });
+        }
+
+        // ─── Single consolidated boot entry point ─────────────────────────────────
+        window.addEventListener('DOMContentLoaded', () => {
+            initPullCordPhysics();
+            init3DSystem();          // unified scroll + mouse parallax
+            injectPerspectiveGrid();
+            initScrollReveal();      // scroll-triggered reveal animations
+        });
+    </script>
+</body>
+</html>
