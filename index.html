@@ -136,6 +136,16 @@
             position: relative;
         }
 
+        /* Continuous clockwise 2D spin for the logo image only */
+        @keyframes logoSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        #headerLogo {
+            animation: logoSpin 6s linear infinite;
+        }
+
         header h1 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
