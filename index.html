@@ -27,14 +27,14 @@
             --lx: 0.5;
             --ly: 0.3;
         }
-
+ 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             user-select: none;
         }
-
+ 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
@@ -45,7 +45,7 @@
             flex-direction: column;
             position: relative;
         }
-
+ 
         /* Moving Fluid Liquid Background (Behind the clean glass) */
         .liquid-bg {
             position: fixed;
@@ -57,7 +57,7 @@
             background: radial-gradient(circle at 10% 20%, #0a0e1a 0%, #040509 95%);
             overflow: hidden;
         }
-
+ 
         .blob {
             position: absolute;
             border-radius: 50%;
@@ -65,7 +65,7 @@
             opacity: 0.35;
             will-change: transform;
         }
-
+ 
         .blob-1 {
             width: 450px;
             height: 450px;
@@ -73,7 +73,7 @@
             top: -10%;
             left: -5%;
         }
-
+ 
         .blob-2 {
             width: 550px;
             height: 550px;
@@ -81,7 +81,7 @@
             bottom: -15%;
             right: -10%;
         }
-
+ 
         .blob-3 {
             width: 350px;
             height: 350px;
@@ -89,7 +89,7 @@
             top: 40%;
             left: 50%;
         }
-
+ 
         /* Page Layout Container */
         .app-container {
             max-width: 1280px;
@@ -101,7 +101,7 @@
             flex-grow: 1;
             z-index: 1;
         }
-
+ 
         /* Sharp Liquid Glass Header */
         header {
             text-align: center;
@@ -115,7 +115,7 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
             border-top: 1px solid var(--glass-highlight);
         }
-
+ 
         /* Circular Logo Container with Auto-Clipping */
         .logo-container {
             width: 80px;
@@ -135,17 +135,17 @@
             justify-content: center;
             position: relative;
         }
-
+ 
         /* Continuous clockwise 2D spin for the logo image only */
         @keyframes logoSpin {
             from { transform: rotate(0deg); }
             to   { transform: rotate(360deg); }
         }
-
+ 
         #headerLogo {
             animation: logoSpin 6s linear infinite;
         }
-
+ 
         header h1 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
@@ -161,14 +161,14 @@
                     drop-shadow(4px 5px 10px rgba(0,0,0,0.55))
                     drop-shadow(0px 0px 22px rgba(212,175,55,0.18));
         }
-
+ 
         header p {
             color: var(--text-secondary);
             font-size: 0.95rem;
             font-weight: 300;
             letter-spacing: 0.5px;
         }
-
+ 
         /* 3D Dashboard Columns */
         .dashboard-grid {
             display: grid;
@@ -176,7 +176,7 @@
             gap: 35px;
             align-items: start;
         }
-
+ 
         /* Glassmorphic Panel Base style */
         .glass-panel {
             background: var(--glass-bg);
@@ -235,13 +235,13 @@
                 inset 0 1px 0 rgba(255,255,255,0.16),
                 0 0 60px rgba(212,175,55,0.07);
         }
-
+ 
         .left-side {
             display: flex;
             flex-direction: column;
             gap: 24px;
         }
-
+ 
         /* Section Headings */
         .section-header {
             display: flex;
@@ -251,14 +251,14 @@
             padding-bottom: 15px;
             margin-bottom: 15px;
         }
-
+ 
         .section-header h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.25rem;
             font-weight: 700;
             color: #fff;
         }
-
+ 
         /* Toggle Switches for Grading Schemes */
         .scheme-selector {
             display: flex;
@@ -267,7 +267,7 @@
             border-radius: 12px;
             border: 1px solid var(--glass-border);
         }
-
+ 
         .scheme-btn {
             background: transparent;
             border: none;
@@ -279,13 +279,13 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
+ 
         .scheme-btn.active {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.85), rgba(184, 134, 11, 0.85));
             color: #1a1410;
             box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
         }
-
+ 
         /* Subject input rows container */
         .courses-container {
             max-height: 480px;
@@ -293,7 +293,7 @@
             padding-right: 5px;
             min-height: 120px;
         }
-
+ 
         .courses-container::-webkit-scrollbar {
             width: 6px;
         }
@@ -305,7 +305,7 @@
             background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
         }
-
+ 
         /* Empty State Placeholder styling */
         .empty-state {
             display: flex;
@@ -319,14 +319,14 @@
             background: rgba(255, 255, 255, 0.01);
             transition: opacity 0.3s ease;
         }
-
+ 
         .empty-state i {
             font-size: 2.5rem;
             color: var(--text-secondary);
             margin-bottom: 15px;
             opacity: 0.5;
         }
-
+ 
         .empty-state h3 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
@@ -334,14 +334,14 @@
             color: #fff;
             margin-bottom: 8px;
         }
-
+ 
         .empty-state p {
             font-size: 0.82rem;
             color: var(--text-secondary);
             max-width: 280px;
             line-height: 1.4;
         }
-
+ 
         /* Course Entry Row */
         .course-row {
             display: grid;
@@ -369,12 +369,12 @@
                 0 14px 32px rgba(0,0,0,0.20),
                 inset 0 1px 0 rgba(255,255,255,0.07);
         }
-
+ 
         @keyframes fadeInRow {
             from { opacity: 0; transform: translateY(10px) scale(0.98); }
             to   { opacity: 1; transform: translateY(0)   scale(1); }
         }
-
+ 
         /* inputs and Custom Popup trigger values styling */
         input[type="text"], input[type="number"] {
             background: rgba(0, 0, 0, 0.25);
@@ -387,13 +387,13 @@
             width: 100%;
             transition: all 0.3s ease;
         }
-
+ 
         input[type="text"]:focus, input[type="number"]:focus {
             border-color: rgba(212, 175, 55, 0.55);
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.18);
             background: rgba(0, 0, 0, 0.35);
         }
-
+ 
         /* Custom Interactive Popup Trigger Element */
         .popup-selector-trigger {
             background: rgba(0, 0, 0, 0.25);
@@ -408,26 +408,26 @@
             cursor: pointer;
             transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
+ 
         .popup-selector-trigger:hover {
             border-color: rgba(212, 175, 55, 0.5);
             background: rgba(255, 255, 255, 0.03);
             color: #fff;
         }
-
+ 
         .popup-selector-trigger.unfilled {
             border-color: rgba(239, 68, 68, 0.25);
             background: rgba(239, 68, 68, 0.02);
             color: rgba(239, 68, 68, 0.8);
         }
-
+ 
         .popup-selector-trigger.filled {
             border: 1px solid rgba(16, 185, 129, 0.3);
             background: rgba(16, 185, 129, 0.04);
             color: #10b981;
             font-weight: 500;
         }
-
+ 
         .delete-btn {
             background: linear-gradient(180deg, rgba(239,68,68,0.18) 0%, rgba(185,28,28,0.10) 100%);
             border: 1px solid rgba(239, 68, 68, 0.25);
@@ -460,14 +460,14 @@
                 0 1px 0 rgba(139,20,20,0.50),
                 0 2px 5px rgba(239,68,68,0.15);
         }
-
+ 
         /* Button controls styling */
         .controls-row {
             display: flex;
             gap: 15px;
             margin-top: 10px;
         }
-
+ 
         .glass-btn {
             background: linear-gradient(180deg,
                 rgba(255,255,255,0.10) 0%,
@@ -510,7 +510,7 @@
                 0 2px 4px rgba(0,0,0,0.25),
                 inset 0 1px 0 rgba(255,255,255,0.08);
         }
-
+ 
         .glass-btn.primary {
             background: linear-gradient(180deg,
                 rgba(212,175,55,0.40) 0%,
@@ -539,27 +539,27 @@
                 0 2px 6px rgba(184,134,11,0.20),
                 inset 0 1px 0 rgba(255,255,255,0.10);
         }
-
+ 
         /* Overall CGPA fields styling */
         .overall-cgpa-section {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 20px;
             margin-top: 5px;
         }
-
+ 
         .overall-cgpa-section h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             color: var(--text-primary);
             margin-bottom: 12px;
         }
-
+ 
         .cgpa-inputs {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
-
+ 
         /* 3D Lamp Container column */
         .right-side {
             display: flex;
@@ -567,7 +567,7 @@
             align-items: center;
             position: relative;
         }
-
+ 
         /* The 3D Interactive Hanging Lamp */
         .lamp-assembly {
             width: 100%;
@@ -580,7 +580,7 @@
             will-change: transform;
             transform-origin: top center;
         }
-
+ 
         .ceiling-mount {
             width: 45px;
             height: 12px;
@@ -588,13 +588,13 @@
             border-radius: 6px 6px 0 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
-
+ 
         .hanging-string {
             width: 3px;
             height: 70px;
             background: linear-gradient(to bottom, #475569, #334155);
         }
-
+ 
         .lamp-housing {
             position: relative;
             width: 130px;
@@ -604,7 +604,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 2px 2px rgba(255,255,255,0.2);
             z-index: 2;
         }
-
+ 
         .lamp-housing::after {
             content: '';
             position: absolute;
@@ -615,7 +615,7 @@
             background: #18181b;
             border-radius: 2px;
         }
-
+ 
         .bulb {
             width: 40px;
             height: 40px;
@@ -629,7 +629,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
         }
-
+ 
         /* Interactive Pull Cord */
         .pull-cord {
             position: absolute;
@@ -643,11 +643,11 @@
             z-index: 5;
             transform-origin: top center;
         }
-
+ 
         .pull-cord:active {
             cursor: grabbing;
         }
-
+ 
         .beaded-chain {
             width: 4px;
             height: 90px;
@@ -656,7 +656,7 @@
             box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
             transition: height 0.15s ease;
         }
-
+ 
         .pull-pendant {
             width: 18px;
             height: 28px;
@@ -670,19 +670,19 @@
             justify-content: center;
             align-items: center;
         }
-
+ 
         .pull-pendant::after {
             content: '▼';
             font-size: 8px;
             color: #000;
             font-weight: bold;
         }
-
+ 
         .pull-cord:hover .pull-pendant {
             transform: scale(1.1);
             background: linear-gradient(135deg, #fef08a, #f59e0b);
         }
-
+ 
         /* Illuminated Light Cone projection */
         .light-cone {
             position: absolute;
@@ -698,18 +698,18 @@
             opacity: 0;
             transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
         }
-
+ 
         /* Active Lamp States */
         body.lamp-active .bulb {
             background: #fef08a;
             box-shadow: 0 0 25px #fef08a, 0 0 50px #eab308;
         }
-
+ 
         body.lamp-active .light-cone {
             height: 420px;
             opacity: 1;
         }
-
+ 
         /* Output Results Display screen */
         .results-panel {
             width: 100%;
@@ -721,7 +721,7 @@
             flex-direction: column;
             justify-content: center;
         }
-
+ 
         /* Unlit Cover mask overlay when results are inactive */
         .unlit-overlay {
             position: absolute;
@@ -743,14 +743,14 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: opacity 0.4s ease;
         }
-
+ 
         .unlit-overlay i {
             font-size: 2.2rem;
             color: #f59e0b;
             margin-bottom: 15px;
             animation: pulseGlow 2s infinite alternate;
         }
-
+ 
         .unlit-overlay p {
             font-weight: 500;
             font-size: 0.95rem;
@@ -759,30 +759,30 @@
             max-width: 220px;
             line-height: 1.4;
         }
-
+ 
         @keyframes pulseGlow {
             0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(245,158,11,0.2)); }
             100% { transform: scale(1.08); filter: drop-shadow(0 0 12px rgba(245,158,11,0.6)); }
         }
-
+ 
         /* Active illuminated results structure */
         body.lamp-active .unlit-overlay {
             opacity: 0;
             pointer-events: none;
         }
-
+ 
         body.lamp-active .results-panel {
             border-color: rgba(253, 224, 71, 0.3);
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 
                         0 0 30px rgba(253, 224, 71, 0.05),
                         inset 0 1px 0 rgba(255,255,255,0.2);
         }
-
+ 
         .results-header {
             text-align: center;
             margin-bottom: 25px;
         }
-
+ 
         .results-header h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.15rem;
@@ -790,7 +790,7 @@
             letter-spacing: 0.5px;
             color: var(--text-primary);
         }
-
+ 
         /* Dynamic Circular Liquid GPA Display */
         .gpa-circle-container {
             display: flex;
@@ -798,7 +798,7 @@
             align-items: center;
             margin-bottom: 25px;
         }
-
+ 
         .gpa-ring {
             width: 150px;
             height: 150px;
@@ -872,7 +872,7 @@
         }
         body.lamp-active .gpa-ring::before { border-color: rgba(253,224,71,0.35); box-shadow: 0 0 14px rgba(253,224,71,0.12); }
         body.lamp-active .gpa-ring::after  { border-color: rgba(253,224,71,0.18); }
-
+ 
         .gpa-ring-value {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.3rem;
@@ -883,7 +883,7 @@
                 0 2px  6px rgba(0,0,0,0.60),
                 0 4px 12px rgba(0,0,0,0.40);
         }
-
+ 
         .gpa-ring-label {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -891,7 +891,7 @@
             color: var(--text-secondary);
             font-weight: 600;
         }
-
+ 
         /* Results parameters breakdown grid */
         .stats-grid {
             display: grid;
@@ -899,7 +899,7 @@
             gap: 15px;
             margin-bottom: 20px;
         }
-
+ 
         .stat-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(0,0,0,0.28));
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -924,7 +924,7 @@
                 inset 0 1px 0 rgba(255,255,255,0.12),
                 0 0 18px rgba(212,175,55,0.14);
         }
-
+ 
         .stat-card-label {
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -932,13 +932,13 @@
             color: var(--text-secondary);
             margin-bottom: 4px;
         }
-
+ 
         .stat-card-value {
             font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
         }
-
+ 
         /* CGPA overall output card */
         .overall-result-box {
             background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(184,134,11,0.08));
@@ -957,20 +957,20 @@
                 inset 0 1px 0 rgba(255,255,255,0.08);
             transform: perspective(600px) translateZ(4px);
         }
-
+ 
         .overall-result-box span {
             font-size: 0.85rem;
             font-weight: 500;
             color: #e8d28a;
         }
-
+ 
         .overall-result-box strong {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.4rem;
             font-weight: 800;
             color: #fff;
         }
-
+ 
         /* Standing badge tags for BU academic policy guidelines */
         .standing-badge {
             text-align: center;
@@ -980,44 +980,44 @@
             font-weight: 600;
             letter-spacing: 0.3px;
         }
-
+ 
         .standing-normal {
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-secondary);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+ 
         .standing-gold {
             background: rgba(245, 158, 11, 0.1);
             color: #f59e0b;
             border: 1px solid rgba(245, 158, 11, 0.2);
             box-shadow: 0 0 10px rgba(245, 158, 11, 0.05);
         }
-
+ 
         .standing-green {
             background: rgba(16, 185, 129, 0.1);
             color: #10b981;
             border: 1px solid rgba(16, 185, 129, 0.2);
         }
-
+ 
         .standing-blue {
             background: rgba(59, 130, 246, 0.1);
             color: #3b82f6;
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
-
+ 
         .standing-warning {
             background: rgba(239, 68, 68, 0.1);
             color: #ef4444;
             border: 1px solid rgba(239, 68, 68, 0.25);
             animation: warningFlash 1s infinite alternate;
         }
-
+ 
         @keyframes warningFlash {
             0% { opacity: 0.85; }
             100% { opacity: 1; }
         }
-
+ 
         /* Spatial Popup Overlay Dialog Box (No textures, sharp vectors) */
         .glass-modal-overlay {
             position: fixed;
@@ -1036,12 +1036,12 @@
             pointer-events: none;
             transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
+ 
         .glass-modal-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
-
+ 
         .glass-modal-card {
             width: 90%;
             max-width: 480px;
@@ -1055,18 +1055,18 @@
             border-left: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(20, 24, 38, 0.85); /* Slightly darker solid background for extreme contrast */
         }
-
+ 
         .glass-modal-overlay.active .glass-modal-card {
             transform: scale(1) translateY(0);
         }
-
+ 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-
+ 
         .modal-header h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.2rem;
@@ -1074,7 +1074,7 @@
             color: #fff;
             letter-spacing: 0.5px;
         }
-
+ 
         .modal-close-btn {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1089,12 +1089,12 @@
             justify-content: center;
             transition: all 0.2s;
         }
-
+ 
         .modal-close-btn:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
-
+ 
         .modal-options-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
@@ -1103,7 +1103,7 @@
             overflow-y: auto;
             padding-right: 5px;
         }
-
+ 
         /* custom interactive glass buttons in the popup list */
         .glass-option-btn {
             background: rgba(255, 255, 255, 0.03);
@@ -1121,25 +1121,25 @@
             justify-content: center;
             gap: 6px;
         }
-
+ 
         .glass-option-btn:hover {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(184, 134, 11, 0.10));
             border-color: rgba(212, 175, 55, 0.4);
             box-shadow: 0 8px 20px rgba(184, 134, 11, 0.25);
             transform: translateY(-3px);
         }
-
+ 
         .glass-option-btn h4 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             font-size: 1.35rem;
         }
-
+ 
         .glass-option-btn span {
             font-size: 0.72rem;
             color: var(--text-secondary);
         }
-
+ 
         /* ── Fix: header must NOT inherit the 3D perspective lean ── */
         header.glass-panel {
             transform: none !important;
@@ -1148,13 +1148,13 @@
         header.glass-panel:hover {
             transform: none !important;
         }
-
+ 
         /* ── Fix: allow text selection inside input fields (Safari/mobile) ── */
         input, textarea, [contenteditable] {
             user-select: text !important;
             -webkit-user-select: text !important;
         }
-
+ 
         /* ── Scroll-triggered reveal animations ──
            .reveal    -> opacity only. Used on header/#inputCard/#resultsCard because
                           init3DSystem() overwrites their inline transform every frame,
@@ -1176,48 +1176,48 @@
             opacity: 1;
             transform: translateY(0);
         }
-
+ 
         /* Responsive Breakpoints */
         @media (max-width: 900px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
+ 
             .right-side {
                 order: -1; /* Place results at top on mobile for better usability */
                 margin-bottom: 20px;
             }
-
+ 
             .lamp-assembly {
                 height: 190px;
             }
-
+ 
             .hanging-string {
                 height: 50px;
             }
-
+ 
             .pull-cord {
                 top: 90px;
             }
-
+ 
             .beaded-chain {
                 height: 70px;
             }
         }
-
+ 
         @media (max-width: 600px) {
             .course-row {
                 grid-template-columns: 1fr;
                 gap: 10px;
                 padding: 15px;
             }
-
+ 
             .delete-btn {
                 width: 100%;
                 margin-top: 5px;
             }
-
+ 
             .cgpa-inputs {
                 grid-template-columns: 1fr;
             }
@@ -1227,13 +1227,13 @@
 <base target="_blank">
 </head>
 <body>
-
+ 
     <div class="liquid-bg">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
     </div>
-
+ 
     <div class="app-container">
         <!-- Logo and App Description Header -->
         <header class="glass-panel reveal">
@@ -1244,7 +1244,7 @@
             <h1>Motibilis BU</h1>
             <p>Created by Motibilis • Independently developed • No affiliation with Bahria University</p>
         </header>
-
+ 
         <div class="dashboard-grid">
             <!-- Dynamic Form Inputs -->
             <div class="left-side glass-panel reveal" id="inputCard">
@@ -1255,7 +1255,7 @@
                         <span style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 500; padding: 8px 14px;">Absolute Scale</span>
                     </div>
                 </div>
-
+ 
                 <!-- Courses Container starts completely empty by default -->
                 <div class="courses-container reveal-up" id="coursesList">
                     <div class="empty-state" id="emptyStatePlaceholder">
@@ -1264,7 +1264,7 @@
                         <p>No semesters or courses have been registered yet. Click "Add Course" below to specify your values.</p>
                     </div>
                 </div>
-
+ 
                 <div class="controls-row reveal-up">
                     <button class="glass-btn primary" onclick="addCourseRow()">
                         <i class="fas fa-plus"></i> Add Course
@@ -1273,7 +1273,7 @@
                         <i class="fas fa-arrows-rotate"></i> Reset
                     </button>
                 </div>
-
+ 
                 <!-- Previous Semesters overall CGPA inputs -->
                 <div class="overall-cgpa-section reveal-up">
                     <h3>Integrate Previous Semesters (Optional)</h3>
@@ -1287,7 +1287,7 @@
                     </div>
                 </div>
             </div>
-
+ 
             <!-- Interactive Hanging Lamp & Glass Output Target -->
             <div class="right-side">
                 <div class="lamp-assembly" id="lampAssembly">
@@ -1302,10 +1302,10 @@
                         <div class="pull-pendant"></div>
                     </div>
                 </div>
-
+ 
                 <!-- Spotlight overlay -->
                 <div class="light-cone" id="lightCone"></div>
-
+ 
                 <!-- Glass Output Terminal Screen -->
                 <div class="results-panel glass-panel reveal" id="resultsCard">
                     <!-- Cover overlay before light is turned on -->
@@ -1313,19 +1313,19 @@
                         <i class="far fa-lightbulb"></i>
                         <p>PULL THE GOLD CHAIN ON THE LAMP TO CALCULATE GPA</p>
                     </div>
-
+ 
                     <div class="results-content">
                         <div class="results-header reveal-up">
                             <h3>Semester Report</h3>
                         </div>
-
+ 
                         <div class="gpa-circle-container reveal-up">
                             <div class="gpa-ring">
                                 <span class="gpa-ring-value" id="sgpaDisplay">0.00</span>
                                 <span class="gpa-ring-label">SGPA</span>
                             </div>
                         </div>
-
+ 
                         <div class="stats-grid reveal-up">
                             <div class="stat-card">
                                 <p class="stat-card-label">Total Credits</p>
@@ -1336,12 +1336,12 @@
                                 <p class="stat-card-value" id="qpDisplay">0.0</p>
                             </div>
                         </div>
-
+ 
                         <div class="overall-result-box" id="overallCgpaBox" style="display: none;">
                             <span>Cumulative CGPA</span>
                             <strong id="cgpaDisplay">0.00</strong>
                         </div>
-
+ 
                         <div class="standing-badge standing-normal" id="standingBadge">
                             Calculating standings...
                         </div>
@@ -1350,7 +1350,7 @@
             </div>
         </div>
     </div>
-
+ 
     <!-- Spatial Popup Overlay Dialog Box -->
     <div class="glass-modal-overlay" id="customModalOverlay">
         <div class="glass-modal-card" id="customModalCard">
@@ -1363,7 +1363,7 @@
             </div>
         </div>
     </div>
-
+ 
     <script>
         // Official Bahria University Absolute Grading Scale
         const gradingScales = {
@@ -1381,14 +1381,14 @@
                 { grade: 'F',  gp: 0.0, range: '0-49%' }
             ]
         };
-
+ 
         let activeScale = 'absolute';
         let rowIdCounter = 0;
         let lampActive = false;
-
+ 
         let modalTargetRowId = null;
         let modalTargetFieldType = null; // 'credit' or 'grade'
-
+ 
         // Sound synthesizer (Web Audio API) for realistic chain toggles & pop-ups
         function playClickSound() {
             try {
@@ -1408,7 +1408,7 @@
                 
                 clickOsc.start();
                 clickOsc.stop(audioCtx.currentTime + 0.06);
-
+ 
                 // Neon lamp buzzing hum on turning active
                 if (!lampActive) {
                     const humOsc = audioCtx.createOscillator();
@@ -1428,7 +1428,7 @@
                 // Fail-safe if Web Audio API is locked or unsupported
             }
         }
-
+ 
         // Render dynamic row (initially empty of variables)
         function addCourseRow(name = "") {
             // Remove the empty registry placeholder on first course registration
@@ -1436,14 +1436,14 @@
             if (emptyPlaceholder) {
                 emptyPlaceholder.remove();
             }
-
+ 
             const container = document.getElementById('coursesList');
             const rowId = `course-row-${rowIdCounter++}`;
             
             const row = document.createElement('div');
             row.className = 'course-row';
             row.id = rowId;
-
+ 
             // Course Name Input (starts blank)
             const nameDiv = document.createElement('div');
             const nameInput = document.createElement('input');
@@ -1452,7 +1452,7 @@
             nameInput.value = name;
             nameInput.oninput = onLiveInputChange;
             nameDiv.appendChild(nameInput);
-
+ 
             // Credit Hour Popup Trigger (no native dropdown, starts empty)
             const creditDiv = document.createElement('div');
             const creditTrigger = document.createElement('div');
@@ -1461,7 +1461,7 @@
             creditTrigger.innerHTML = '<span>Choose Credits</span> <i class="fas fa-cubes"></i>';
             creditTrigger.onclick = () => openCreditPopup(row.id);
             creditDiv.appendChild(creditTrigger);
-
+ 
             // Grade Selector Popup Trigger (no native dropdown, starts empty)
             const gradeDiv = document.createElement('div');
             const gradeTrigger = document.createElement('div');
@@ -1470,7 +1470,7 @@
             gradeTrigger.innerHTML = '<span>Choose Grade</span> <i class="fas fa-graduation-cap"></i>';
             gradeTrigger.onclick = () => openGradePopup(row.id);
             gradeDiv.appendChild(gradeTrigger);
-
+ 
             // Row Delete Button
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'delete-btn';
@@ -1480,14 +1480,14 @@
                 verifyEmptyState();
                 onLiveInputChange();
             };
-
+ 
             row.appendChild(nameDiv);
             row.appendChild(creditDiv);
             row.appendChild(gradeDiv);
             row.appendChild(deleteBtn);
             container.appendChild(row);
         }
-
+ 
         // Check if registry has become empty, restoring placeholder elements if so
         function verifyEmptyState() {
             const container = document.getElementById('coursesList');
@@ -1501,18 +1501,18 @@
                 `;
             }
         }
-
+ 
         // Custom Selection Popup List: Credit Hours
         function openCreditPopup(rowId) {
             modalTargetRowId = rowId;
             modalTargetFieldType = 'credit';
-
+ 
             const title = document.getElementById('modalTitle');
             const container = document.getElementById('modalOptionsContainer');
             
             title.textContent = "Select Credit Hours";
             container.innerHTML = '';
-
+ 
             // Render interactive cards for selection
             const creditsList = [1, 2, 3, 4];
             creditsList.forEach(c => {
@@ -1525,21 +1525,21 @@
                 optBtn.onclick = () => registerPopupChoice(c, `${c} Cr. Hr.`);
                 container.appendChild(optBtn);
             });
-
+ 
             openCustomModal();
         }
-
+ 
         // Custom Selection Popup List: Course Grades
         function openGradePopup(rowId) {
             modalTargetRowId = rowId;
             modalTargetFieldType = 'grade';
-
+ 
             const title = document.getElementById('modalTitle');
             const container = document.getElementById('modalOptionsContainer');
             
             title.textContent = "Select Course Grade";
             container.innerHTML = '';
-
+ 
             // Render interactive cards dynamically matching the active grading scheme
             const currentScaleData = gradingScales[activeScale];
             currentScaleData.forEach(g => {
@@ -1552,10 +1552,10 @@
                 optBtn.onclick = () => registerPopupChoice(g.gp, `${g.grade} (${g.range})`, g.grade);
                 container.appendChild(optBtn);
             });
-
+ 
             openCustomModal();
         }
-
+ 
         // Write the chosen values to our customized fields
         function registerPopupChoice(val, textLabel, absoluteGradeLabel = '') {
             const trigger = document.getElementById(`${modalTargetFieldType}-trigger-${modalTargetRowId}`);
@@ -1566,12 +1566,12 @@
                 // Bind the computed values to properties inside dataset variables
                 trigger.dataset.computedValue = val;
             }
-
+ 
             closeCustomModal();
             playClickSound();
             onLiveInputChange();
         }
-
+ 
         // General custom warning prompt overlays (replaces default native pop-ups)
         function showGlassPromptOverlay(message) {
             const title = document.getElementById('modalTitle');
@@ -1588,16 +1588,16 @@
             
             openCustomModal();
         }
-
+ 
         function openCustomModal() {
             document.getElementById('customModalOverlay').classList.add('active');
             playClickSound();
         }
-
+ 
         function closeCustomModal() {
             document.getElementById('customModalOverlay').classList.remove('active');
         }
-
+ 
         // Clear dynamic elements and reset form variables
         function resetForm() {
             document.getElementById('coursesList').innerHTML = '';
@@ -1610,7 +1610,7 @@
                 turnLampOff();
             }
         }
-
+ 
         // Lamp toggle and click string pulling execution
         function initPullCordPhysics() {
             const pullCord = document.getElementById('pullCord');
@@ -1621,7 +1621,7 @@
             let currentDragY = 0;
         let touchStarted = false;
             const maxPullDistance = 60;
-
+ 
             const handleStart = (e) => {
                 dragging = true;
                 startY = e.clientY || e.touches[0].clientY;
@@ -1632,7 +1632,7 @@
                 document.addEventListener('mouseup', handleEnd);
                 document.addEventListener('touchend', handleEnd);
             };
-
+ 
             const handleMove = (e) => {
                 if (!dragging) return;
                 // Safely block default scroll events while pulling the chain on mobile
@@ -1643,11 +1643,11 @@
                 if (deltaY < 0) deltaY = 0;
                 if (deltaY > maxPullDistance) deltaY = maxPullDistance;
                 currentDragY = deltaY;
-
+ 
                 beadedChain.style.height = `${90 + currentDragY}px`;
                 pullCord.style.transform = `translateY(${currentDragY}px)`;
             };
-
+ 
             const handleEnd = () => {
                 if (!dragging) return;
                 dragging = false;
@@ -1656,23 +1656,23 @@
                 document.removeEventListener('touchmove', handleMove);
                 document.removeEventListener('mouseup', handleEnd);
                 document.removeEventListener('touchend', handleEnd);
-
+ 
                 // Quick bounce spring-back transition animation
                 beadedChain.style.transition = 'height 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
                 pullCord.style.transition = 'transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
                 beadedChain.style.height = '90px';
                 pullCord.style.transform = 'translateY(0px)';
-
+ 
                 // Execute logic trigger past pull threshold
                 if (currentDragY > 15) {
                     toggleLamp();
                 }
                 currentDragY = 0;
             };
-
+ 
             pullCord.addEventListener('mousedown', handleStart);
             pullCord.addEventListener('touchstart', handleStart, { passive: true });
-
+ 
             // Standard click option fallback
             pullCord.addEventListener('click', (e) => {
                 if (touchStarted) {
@@ -1685,7 +1685,7 @@
                 pullCord.style.transition = 'transform 0.15s ease-out';
                 beadedChain.style.height = '120px';
                 pullCord.style.transform = 'translateY(30px)';
-
+ 
                 setTimeout(() => {
                     beadedChain.style.transition = 'height 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
                     pullCord.style.transition = 'transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1.2)';
@@ -1695,7 +1695,7 @@
                 }, 150);
             });
         }
-
+ 
         function toggleLamp() {
             // If turning the lamp on, verify input details first
             if (!lampActive) {
@@ -1710,7 +1710,7 @@
             }
             playClickSound();
         }
-
+ 
         // Strict input check before running engine calculations
         function validateInputEntries() {
             const rows = document.querySelectorAll('.course-row');
@@ -1718,7 +1718,7 @@
                 showGlassPromptOverlay("Your Grade Registry is completely empty. Please click 'Add Course' to register your semester modules before pulling the cord.");
                 return false;
             }
-
+ 
             let entriesUnfilled = false;
             rows.forEach(row => {
                 const creditVal = row.querySelector('[id^="credit-trigger-"]').dataset.computedValue;
@@ -1728,20 +1728,20 @@
                     entriesUnfilled = true;
                 }
             });
-
+ 
             if (entriesUnfilled) {
                 showGlassPromptOverlay("Specify the Credit Hours and Grade for all courses. Missing values cannot be assumed.");
                 return false;
             }
-
+ 
             return true;
         }
-
+ 
         function turnLampOff() {
             lampActive = false;
             document.body.classList.remove('lamp-active');
         }
-
+ 
         // Live calculation update (flickers rather than sliding up/down if lamp is active)
         function onLiveInputChange() {
             if (lampActive) {
@@ -1753,7 +1753,7 @@
                 calculateResults(true); 
             }
         }
-
+ 
         function flickerLamp() {
             document.body.classList.remove('lamp-active');
             setTimeout(() => {
@@ -1765,13 +1765,13 @@
                 }
             }, 100);
         }
-
+ 
         // Mathematical GPA Engine
         function calculateResults(isLiveUpdate = false) {
             const rows = document.querySelectorAll('.course-row');
             let totalCredits = 0;
             let totalQualityPoints = 0;
-
+ 
             rows.forEach(row => {
                 const credits = parseFloat(row.querySelector('[id^="credit-trigger-"]').dataset.computedValue) || 0;
                 const gp = parseFloat(row.querySelector('[id^="grade-trigger-"]').dataset.computedValue) || 0.0;
@@ -1779,21 +1779,21 @@
                 totalCredits += credits;
                 totalQualityPoints += (gp * credits);
             });
-
+ 
             // Semester GPA Calculation (SGPA = Sum(GP * Credits) / Sum(Credits))
             let sgpa = 0.00;
             if (totalCredits > 0) {
                 sgpa = totalQualityPoints / totalCredits;
             }
-
+ 
             // Optional Cumulative calculation parameters
             const prevCgpaInput = parseFloat(document.getElementById('prevCgpa').value);
             const prevCreditsInput = parseFloat(document.getElementById('prevCredits').value);
-
+ 
             // Validate prevCgpa is within legal GPA range (0.00 – 4.00)
             const prevCgpaField = document.getElementById('prevCgpa');
             const cgpaBox = document.getElementById('overallCgpaBox');
-
+ 
             if (!isNaN(prevCgpaInput) && (prevCgpaInput < 0 || prevCgpaInput > 4.0)) {
                 prevCgpaField.style.borderColor = 'rgba(239,68,68,0.7)';
                 prevCgpaField.style.boxShadow  = '0 0 8px rgba(239,68,68,0.3)';
@@ -1810,7 +1810,7 @@
                 cgpaBox.style.opacity = '1';
                 cgpaBox.title = '';
             }
-
+ 
             const prevCgpaValid = !isNaN(prevCgpaInput) && prevCgpaInput >= 0 && prevCgpaInput <= 4.0;
             
             let combinedCgpa = 0.00;
@@ -1820,10 +1820,10 @@
                 const prevTotalQP = prevCgpaInput * prevCreditsInput;
                 combinedCgpa = (prevTotalQP + totalQualityPoints) / (prevCreditsInput + totalCredits);
             }
-
+ 
             updateResultsUI(sgpa, totalCredits, totalQualityPoints, combinedCgpa, hasCgpaInput, isLiveUpdate);
         }
-
+ 
         // Update presentation displays
         function updateResultsUI(sgpa, totalCredits, totalQP, combinedCgpa, hasCgpa, isLiveUpdate) {
             const sgpaEl = document.getElementById('sgpaDisplay');
@@ -1832,7 +1832,7 @@
             const cgpaBox = document.getElementById('overallCgpaBox');
             const cgpaEl = document.getElementById('cgpaDisplay');
             const standingBadge = document.getElementById('standingBadge');
-
+ 
             if (isLiveUpdate) {
                 // Instantly update elements
                 sgpaEl.textContent = sgpa.toFixed(2);
@@ -1850,7 +1850,7 @@
                 animateNumericalValue(sgpaEl, 0.00, sgpa, 1000, 2);
                 animateNumericalValue(qpEl, 0.0, totalQP, 1000, 1);
                 creditsEl.textContent = totalCredits;
-
+ 
                 if (hasCgpa) {
                     cgpaBox.style.display = 'flex';
                     animateNumericalValue(cgpaEl, 0.00, combinedCgpa, 1000, 2);
@@ -1858,16 +1858,16 @@
                     cgpaBox.style.display = 'none';
                 }
             }
-
+ 
             // Evaluation of standings matching Bahria standard policy guidelines
             let badgeClass = 'standing-normal';
             let badgeText  = 'Good Academic Standing';
-
+ 
             const evaluationTarget = hasCgpa ? combinedCgpa : sgpa;
-
+ 
             // Dean's List: SGPA ≥ 3.50, full semester load, AND combined CGPA ≥ 3.50 if available
             const cgpaQualifies = !hasCgpa || combinedCgpa >= 3.50;
-
+ 
             if (sgpa >= 3.50 && totalCredits >= 15 && cgpaQualifies) {
                 badgeText  = "Eligible for Dean's List!";
                 badgeClass = 'standing-gold';
@@ -1889,14 +1889,14 @@
                 badgeText  = 'Calculating standings...';
                 badgeClass = 'standing-normal';
             }
-
+ 
             standingBadge.className = `standing-badge ${badgeClass}`;
             standingBadge.textContent = badgeText;
         }
-
+ 
         // ─── Animation cancellation registry ─────────────────────────────────────────
         const activeAnimations = new Map();
-
+ 
         // Numerical counting interpolation
         function animateNumericalValue(element, start, end, duration, decimalPlaces = 2) {
             // Cancel any existing animation on this element
@@ -1904,7 +1904,7 @@
                 cancelAnimationFrame(activeAnimations.get(element));
                 activeAnimations.delete(element);
             }
-
+ 
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
@@ -1922,7 +1922,7 @@
             const rafId = requestAnimationFrame(step);
             activeAnimations.set(element, rafId);
         }
-
+ 
         // ─── Global Mouse Light Source ─────────────────────────────────────────────
         // Tracks mouse and moves a specular highlight across the body,
         // making the whole scene respond to a single moving light position.
@@ -1935,7 +1935,7 @@
                 document.documentElement.style.setProperty('--ly', ly.toFixed(3));
             });
         })();
-
+ 
         // ─── Unified 3D Transform System ─────────────────────────────────────────
         // Single RAF loop owns ALL transforms on both cards.
         // Mouse events only write to state — they NEVER call style.transform directly.
@@ -1945,36 +1945,36 @@
             let targetScroll  = 0;
             const EASE       = 0.08;
             const BASE_TILT  = 1.5;   // permanent lean so panels have depth even at rest
-
+ 
             // Per-card mouse state (written by events, read by RAF)
             const state = {
                 inputCard:   { el: document.getElementById('inputCard'),   dx: 0, dy: 0, hover: false },
                 resultsCard: { el: document.getElementById('resultsCard'), dx: 0, dy: 0, hover: false }
             };
-
+ 
             window.addEventListener('scroll', () => { targetScroll = window.scrollY; }, { passive: true });
-
+ 
             // Attach mouse listeners — only update state, never touch style.transform here
             Object.values(state).forEach(card => {
                 if (!card.el) return;
-
+ 
                 card.el.addEventListener('mousemove', e => {
                     const r  = card.el.getBoundingClientRect();
                     card.dx  = (e.clientX - r.left - r.width  / 2) / (r.width  / 2); // –1…+1
                     card.dy  = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
                     card.hover = true;
                 });
-
+ 
                 card.el.addEventListener('mouseleave', () => {
                     card.dx    = 0;
                     card.dy    = 0;
                     card.hover = false;
                 });
             });
-
+ 
             function tick() {
                 currentScroll += (targetScroll - currentScroll) * EASE;
-
+ 
                 // ── Input card ──────────────────────────────────────────────────
                 const ic = state.inputCard;
                 if (ic.el) {
@@ -1998,7 +1998,7 @@
                         ic.el.style.boxShadow  = '';
                     }
                 }
-
+ 
                 // ── Results card ────────────────────────────────────────────────
                 const rc = state.resultsCard;
                 if (rc.el) {
@@ -2022,14 +2022,14 @@
                         rc.el.style.boxShadow  = '';
                     }
                 }
-
+ 
                 // ── Lamp kinetic sway ───────────────────────────────────────────
                 const lamp = document.getElementById('lampAssembly');
                 if (lamp) {
                     const sway = Math.sin(currentScroll * 0.012) * Math.min(currentScroll * 0.04, 6);
                     lamp.style.transform = `rotate(${sway}deg)`;
                 }
-
+ 
                 // ── Blob depth parallax ─────────────────────────────────────────
                 const b1 = document.querySelector('.blob-1');
                 const b2 = document.querySelector('.blob-2');
@@ -2037,13 +2037,13 @@
                 if (b1) b1.style.transform = `translateY(${currentScroll *  0.18}px)`;
                 if (b2) b2.style.transform = `translateY(${currentScroll * -0.12}px)`;
                 if (b3) b3.style.transform = `translateY(${currentScroll *  0.08}px)`;
-
+ 
                 requestAnimationFrame(tick);
             }
-
+ 
             tick();
         }
-
+ 
         // ─── Perspective Grid Floor ────────────────────────────────────────────────
         function injectPerspectiveGrid() {
             const W = 2000, H = 400;
@@ -2058,11 +2058,11 @@
                 zIndex: '0', opacity: '0.10', pointerEvents: 'none',
                 overflow: 'visible',
             });
-
+ 
             const vx = W / 2, vy = 0;
             const cols = 18, rows = 10;
             let paths = '';
-
+ 
             for (let i = 0; i <= cols; i++) {
                 const bx = (W / cols) * i;
                 paths += `<line x1="${vx}" y1="${vy}" x2="${bx}" y2="${H}" stroke="rgba(212,175,55,1)" stroke-width="1.2"/>`;
@@ -2074,11 +2074,11 @@
                 const x2 = vx + (W - vx) * t;
                 paths += `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="rgba(212,175,55,1)" stroke-width="1.2"/>`;
             }
-
+ 
             svg.innerHTML = paths;
             document.body.insertBefore(svg, document.body.firstChild);
         }
-
+ 
         // ─── Scroll-triggered reveal animations ───────────────────────────────────
         // Watches .reveal / .reveal-up elements and fades/slides them in once they
         // enter the viewport, with a slight cascading stagger between elements.
@@ -2092,13 +2092,13 @@
                     }
                 });
             }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
+ 
             revealEls.forEach((el, i) => {
                 el.style.transitionDelay = `${Math.min(i * 0.08, 0.6)}s`;
                 observer.observe(el);
             });
         }
-
+ 
         // ─── Single consolidated boot entry point ─────────────────────────────────
         window.addEventListener('DOMContentLoaded', () => {
             initPullCordPhysics();
@@ -2109,3 +2109,4 @@
     </script>
 </body>
 </html>
+ 
